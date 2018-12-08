@@ -46,13 +46,14 @@ module.exports = app => {
     });
 
     //GET =>  one student
-    app.get("/user/:nom", (req, res) => {
+    app.get("/user/:id", (req, res) => {
         MongoClient.connect(url, {
             useNewUrlParser: true
         }, function (err, db) {
             if (err) throw err;
             let dbo = db.db("mydb");
-            dbo.collection("student").find({"name": req.params.nom}).toArray(function (err, res) {
+            let id = new mongo.ObjectID(req.params.id)
+            dbo.collection("student").find({"_id": id}).toArray(function (err, res) {
                 if (err) throw err;
                 show(res)
                 db.close();
