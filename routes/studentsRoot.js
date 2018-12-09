@@ -1,8 +1,10 @@
 module.exports = app => {
     let mongo = require('mongodb');
     let MongoClient = require('mongodb').MongoClient;
-    let url = "mongodb://localhost:27017/";
-
+    //let url = "mongodb://localhost:27017/";
+    //'mongodb://user:pass@host:port/dbname';
+    let url = "mongodb://oussrh:Azes7895@ds227594.mlab.com:27594/becode";
+    
     //POST new students
     app.post("/user", (req, res) => {
         let nom = req.body.name;
@@ -12,7 +14,7 @@ module.exports = app => {
             useNewUrlParser: true
         }, function (err, db) {
             if (err) throw err;
-            let dbo = db.db("mydb");
+            let dbo = db.db("becode");
             let myobj = {
                 name: nom,
                 prenom: prenom
@@ -32,7 +34,7 @@ module.exports = app => {
             useNewUrlParser: true
         }, function (err, db) {
             if (err) throw err;
-            let dbo = db.db("mydb");
+            let dbo = db.db("becode");
             dbo.collection("student").find({}).toArray(function (err, res) {
                 if (err) throw err;
                 show(res)
@@ -51,7 +53,7 @@ module.exports = app => {
             useNewUrlParser: true
         }, function (err, db) {
             if (err) throw err;
-            let dbo = db.db("mydb");
+            let dbo = db.db("becode");
             let id = new mongo.ObjectID(req.params.id)
             dbo.collection("student").find({"_id": id}).toArray(function (err, res) {
                 if (err) throw err;
@@ -71,7 +73,7 @@ module.exports = app => {
             useNewUrlParser: true
         }, function (err, db) {
             if (err) throw err;
-            let dbo = db.db("mydb");
+            let dbo = db.db("becode");
             let myquery = {
                 _id: new mongo.ObjectID(req.params.id)
             };
@@ -96,7 +98,7 @@ module.exports = app => {
             useNewUrlParser: true
         }, function (err, db) {
             if (err) throw err;
-            let dbo = db.db("mydb");
+            let dbo = db.db("becode");
 
             let myquery = {
                 _id: new mongo.ObjectID(req.params.id)
