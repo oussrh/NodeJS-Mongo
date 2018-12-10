@@ -6,7 +6,7 @@ module.exports = app => {
     let url = "mongodb://oussrh:Azes7895@ds227594.mlab.com:27594/becode";
     let dataBase = "becode";
 
-    app.get('*', function(req, res) {
+    app.get('/', function(req, res) {
         res.sendfile('index.html');
     });
     
