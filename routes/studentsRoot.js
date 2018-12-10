@@ -6,12 +6,10 @@ module.exports = app => {
     let url = "mongodb://oussrh:Azes7895@ds227594.mlab.com:27594/becode";
     let dataBase = "becode";
 
-    app.get("/", (req, res) => {
-
-        res.render('index.html')
+    app.get('*', function(req, res) {
+        res.sendfile(__dirname+'index.html');
     });
     
-
     //*************************************
     //POST=> new students
     app.post("/user", (req, res) => {
