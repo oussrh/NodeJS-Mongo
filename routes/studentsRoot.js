@@ -7,7 +7,7 @@ module.exports = app => {
     let dataBase = "becode";
 
     app.get('*', function(req, res) {
-        res.sendfile(__dirname+'index.html');
+        res.sendfile('index.html');
     });
     
     //*************************************
