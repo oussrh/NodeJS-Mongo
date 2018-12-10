@@ -1,8 +1,9 @@
 let tbody = document.querySelector('tbody');
 let body = document.querySelector('body');
+let url = "https://mongostudent.herokuapp.com";
 
 const getStudentList = async () => {
-    let reponse = await fetch('http://localhost:8080/user', {
+    let reponse = await fetch(url+'/user', {
             method: "GET",
         })
         .catch(error => console.warn(error));
@@ -68,7 +69,7 @@ let deleteStudent = async (e) => {
                 swal("Poof! Your imaginary file has been deleted!", {
                     icon: "success",
                 });
-                await fetch(`http://localhost:8080/user/${id}`, {
+                await fetch(url+`/user/${id}`, {
                         method: 'DELETE',
                         headers: {
                             'Content-type': 'application/json'
@@ -89,7 +90,7 @@ let deleteStudent = async (e) => {
 //get the current element 
 let getStudent = async (e) => {
     let id = e.currentTarget.id;
-    let reponse = await fetch(`http://localhost:8080/user/${id}`, {
+    let reponse = await fetch(url+`/user/${id}`, {
             method: "GET",
         })
         .catch(error => console.warn(error));
@@ -112,7 +113,7 @@ const modifyStudent = async () => {
     let inputName = document.getElementById('editName');
     let inputLastN = document.getElementById('editLastN');
 
-    await fetch(`http://localhost:8080/user/${id}`, {
+    await fetch(url+`/user/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-type': 'application/json'
@@ -140,7 +141,7 @@ document.querySelector('.modify').addEventListener('click', modifyStudent);
 let addStudent = async () => {
     let name = document.getElementById('name');
     let lastN = document.getElementById('lastN');
-    let reponse = await fetch('http://localhost:8080/user', {
+    let reponse = await fetch(url+'/user', {
             method: "POST",
             headers: {
                 'Content-type': 'application/json'
