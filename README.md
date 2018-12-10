@@ -4,7 +4,7 @@
 
 * The app can do a add student,show,modify and delete. (CRUD)
 
-* The folder <**front**> is the front-end make with a new CSS framework [Spectre.css](https://picturepan2.github.io/spectre/)
+* The folder <**front**> is the front-end maked with a new CSS framework [Spectre.css](https://picturepan2.github.io/spectre/)
 
 
 Technology used
