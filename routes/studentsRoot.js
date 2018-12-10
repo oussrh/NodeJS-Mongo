@@ -8,7 +8,7 @@ module.exports = app => {
 
     app.get("/", (req, res) => {
 
-        require('index.html')
+        res.render('index.html')
     });
     
 
