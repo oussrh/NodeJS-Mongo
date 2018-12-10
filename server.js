@@ -8,7 +8,7 @@ app.use(bodyParser.json())
 
 require("./routes/studentsRoot")(app);
 
-const PORT = process.env.PORT || 80;
+const PORT = 8080; //process.env.PORT || 80;
 app.listen(PORT, () => {
   console.log(`Server running`);
 });

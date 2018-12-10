@@ -5,13 +5,7 @@ module.exports = app => {
     //'mongodb://user:pass@host:port/dbname';
     let url = "mongodb://oussrh:Azes7895@ds227594.mlab.com:27594/becode";
     let dataBase = "becode";
-
-    app.get('/', function(req, res) {
-        res.sendfile('index.html');
-    });
-    
-    //*************************************
-    //POST=> new students
+    //POST new students
     app.post("/user", (req, res) => {
         let nom = req.body.name;
         let prenom = req.body.prenom;
@@ -33,7 +27,7 @@ module.exports = app => {
         });
         res.sendStatus(200);
     });
-    //*************************************
+
     //GET => all students
     app.get("/user", (req, res) => {
         MongoClient.connect(url, {
@@ -52,7 +46,7 @@ module.exports = app => {
             res.send(result)
         }
     });
-    //*************************************
+
     //GET =>  one student
     app.get("/user/:id", (req, res) => {
         MongoClient.connect(url, {
@@ -61,9 +55,7 @@ module.exports = app => {
             if (err) throw err;
             let dbo = db.db(dataBase);
             let id = new mongo.ObjectID(req.params.id)
-            dbo.collection("student").find({
-                "_id": id
-            }).toArray(function (err, res) {
+            dbo.collection("student").find({"_id": id}).toArray(function (err, res) {
                 if (err) throw err;
                 show(res)
                 db.close();
@@ -73,9 +65,8 @@ module.exports = app => {
         function show(result) {
             res.send(result)
         }
-        res.sendStatus(200);
     });
-    //*************************************
+
     //PUT => update one student
     app.put("/user/:id", (req, res) => {
         MongoClient.connect(url, {
@@ -92,7 +83,7 @@ module.exports = app => {
                     prenom: req.body.prenom
                 }
             };
-            dbo.collection("student").updateOne(myquery, newvalues, function (err, res) {
+            dbo.collection("student").updateOne(myquery,newvalues, function (err, res) {
                 if (err) throw err;
                 console.log("1 document updated");
                 db.close();
@@ -100,7 +91,7 @@ module.exports = app => {
         });
         res.sendStatus(200);
     });
-    //*************************************
+
     //DELETE => DELETE one student
     app.delete("/user/:id", (req, res) => {
         MongoClient.connect(url, {
